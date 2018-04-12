@@ -1,16 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    
+  </style>
 </head>
+
 <body>
-  
+  <div id="app-1">
+    <ul>
+      <li v-for="item in items">
+        {{ item }}
+      </li>
+    </ul>
+
+  </div>
+  <hr>  
+  <div id="app-2">
+    <p>
+      {{ userProfile.name }}
+    </p>
+    <p>
+      {{ userProfile.age }}
+    </p>
+  </div>
+  <hr>
+  <div id="app-3">
+    <ul>
+      <li v-for="n in evenNumbers">
+        {{ n }}
+      </li>
+    </ul>
+  </div>
+  <hr>
+  <div id="app-4">
+    <ul>
+      <li v-for="n in even(numbers)">
+        {{ n }}
+      </li>
+    </ul>
+  </div>
+  <hr>
+  <div id="app-5">
+    <span v-for="n in 10">
+      {{ n }}
+    </span>
+  </div>
+  <hr>
+  <div id="app-6">
+    <ul>
+      <template v-for="item in items">
+        <li> {{ item.msg }}</li>
+        <li class="divider"></li>
+      </template>
+    </ul>
+  </div>
   <script src="js/vue.js"></script>
   <script>
-    
+    var vm = new Vue({
+      el: '#app-1',
+      data: {
+        items: ['a', 'b', 'c']
+      }
+    });
+
+    var vm2 = new Vue({
+      el: '#app-2',
+      data: {
+        userProfile: {
+          name: "edison"
+        }
+      }
+    });
+
+    var vm3 = new Vue({
+      el: '#app-3',
+      data: {
+        numbers: [1,2,3,4,5]
+      },
+      computed:{
+        evenNumbers: function () {
+          return this.numbers.filter(function (number) {
+            return number % 2 === 0
+          })
+        }
+      }
+    });
+
+    var vm4 = new Vue({
+      el: '#app-4',
+      data: {
+        numbers: [1,2,,3,4,5]
+      },
+      methods:{
+        even: function (numbers) {
+          return numbers.filter(function(number){
+            return number % 2 === 0
+          })
+        }
+      }
+    });
+
+     var vm5 = new Vue({
+       el: '#app-5',
+       
+     });
+
+     var vm6 = new Vue({
+       el: '#app-6',
+       data: {
+         items: [
+          {
+            msg: "hello",
+            age: "vuejs"
+          },
+          {
+            msg: "hello02",
+            age: "vuejs02"
+          }
+         ]
+          
+       }
+     })
   </script>
 </body>
+
 </html>
