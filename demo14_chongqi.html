@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app-1">
+    <input type="text" v-model.lazy="msg" id="dd">
+    <label for="dd"> {{ msg }} </label>
+  </div>
+
+  <hr>
+
+  <div id="app-2">
+    <input type="number" v-model.number="age">
+  </div>
+
+  <hr>
+
+  <div id="app-3">
+    <input id="num02" v-model.trim="msg">
+    <label for="num02">{{ msg }}</label>
+  </div>
+  
+  <script>
+    var vm = new Vue({
+      el:'#app-1',
+      data:{
+        msg:"jj"
+      }
+    });
+
+    var vm2 = new Vue({
+      el:'#app-2',
+      data:{
+        age: 1
+      }
+    });
+    
+    var vm3 = new Vue({
+      el:'#app-3',
+      data:{
+        msg:''
+      }
+    });
+    
+  </script>
+</body>
+</html>
