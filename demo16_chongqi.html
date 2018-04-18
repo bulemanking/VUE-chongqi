@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app-1">
+    <child my-message="hello"></child>
+  </div>
+
+
+  
+  
+  
+  <script>
+    // 父组件的数据需要通过 prop 才能下发到子组件中。
+    Vue.component('child', {
+      // 子组件要显式地用 props 选项声明它预期的数据
+      // HTML 特性是不区分大小写的。所以，当使用的不是字符串模板时，
+      // camelCase (驼峰式命名) 的 prop 需要转换为相对应的 
+      // kebab-case (短横线分隔式命名)
+      // myMessage => my-message
+      props:['myMessage'],
+      template: '<span> {{myMessage}} </span>'
+    });
+    var vm = new Vue({
+      el:'#app-1'
+    });
+  </script>
+</body>
+</html>
