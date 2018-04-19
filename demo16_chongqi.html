@@ -12,7 +12,11 @@
     <child my-message="hello"></child>
   </div>
 
-
+  <div id="app-2">
+    <input v-model="parentMsg" type="text" />
+    <br>
+    <child v-bind:my-message="parentMsg"></child>
+  </div>
   
   
   
@@ -27,9 +31,23 @@
       props:['myMessage'],
       template: '<span> {{myMessage}} </span>'
     });
+
     var vm = new Vue({
       el:'#app-1'
     });
+
+    var vm2 = new Vue({
+      el:'#app-2',
+      data:{
+        parentMsg:'Message from parent'
+      }
+    });
+
+    
+    // <!-- 传递了一个字符串 "1" -->
+    // <comp some-prop="1"></comp>
+    // <!-- 传递真正的数值 -->
+    // <comp v-bind:some-prop="1"></comp>
   </script>
 </body>
 </html>
