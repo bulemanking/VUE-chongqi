@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app-2">
+    <p v-for="msg in messages">{{ msg }}</p>
+    <button-message v-on:message="handleMessage"></button-message>
+  </div>
+
+  <script>
+
+    // 没有完全明白 这个例子 
+    Vue.component('button-message', {
+      template: `<div>
+        <input type="text" v-model="message"/>
+        <button v-on:click="handleMessage">Send</button>
+      </div>`,
+      data: function () {
+        return {
+          message: 'test message'
+        }
+      },
+      methods: {
+        handleMessage: function () {
+          this.$emit('message', {message: this.message})
+        }
+      }
+    });
+
+    var vm2 =  new Vue({
+      el:'#app-2',
+      data: {
+        messages: []
+      },
+      methods: {
+        handleMessage: function (payload) {
+          this.messages.push(payload.message)
+        }
+      }
+    });
+  </script>
+</body>
+</html>
