@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <!-- <my-component v-on:click.native="doThething"></my-component> -->
+
+
+  <!-- 无效 -->
+  <child-component v-show="someChildProperty" ></child-component>
+  <script>
+    // 父组件模板的内容在父组件作用域内编译；
+    // 子组件模板的内容在子组件作用域内编译。
+    
+    Vue.component('child-component',{
+      //有效，因为是在正确的作用域内
+      // 如果要绑定子组件作用域内的指令到一个组件的根节点，
+      // 你应当在子组件自己的模板里做
+      template:'<div v-show="someChildProperty">child</div>',
+      data:function () {
+        return {
+          someChildProperty: true
+        }
+      }
+    });
+
+
+
+  </script>
+</body>
+</html>
